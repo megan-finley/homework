@@ -1,0 +1,45 @@
+VERSION 1.0 CLASS
+BEGIN
+  MultiUse = -1  'True
+END
+Attribute VB_Name = "Sheet3"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = True
+Sub alpha()
+For Each ws In Worksheets
+Dim worksheetname As String
+lastRow = ws.Cells(Rows.Count, 1).End(xlUp).Row
+Ticker = A
+ws.Range("I1").EntireColumn.Insert
+ws.Cells(1, 9).Value = "Ticker"
+
+Next ws
+
+Range("J1").Value = "Total Stock Volume"
+
+Dim TickerName As String
+Dim TickerTotal As Double
+TickerTotal = 0
+
+Dim Summary As Integer
+Summary = 2
+For i = 2 To 705714
+
+If Cells(i + 1, 1).Value <> Cells(i, 1).Value Then
+TickerName = Cells(i, 1).Value
+TickerTotal = TickerTotal + Cells(i, 7).Value
+
+Range("I" & Summary).Value = TickerName
+Range("J" & Summary).Value = TickerTotal
+
+Summary = Summary + 1
+
+TickerTotal = 0
+Else
+TickerTotal = TickerTotal + Cells(i, 7).Value
+End If
+Next i
+End Sub
+
